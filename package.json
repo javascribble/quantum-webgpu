@@ -1,5 +1,5 @@
 {
-    "name": "@javascribble/quantum-element",
+    "name": "@javascribble/quantum-webgpu",
     "description": "",
     "version": "0.0.0",
     "license": "MIT",
@@ -14,24 +14,21 @@
     },
     "scripts": {
         "serve": "serve ./",
-        "build": "rollup -c quantum-element.rollup.config.js",
-        "watch": "rollup -w -c quantum-element.rollup.config.js",
+        "build": "rollup -c quantum-webgpu.rollup.config.js",
+        "watch": "rollup -w -c quantum-webgpu.rollup.config.js",
         "start": "npm-run-all --parallel serve watch",
         "postversion": "npm publish --access public"
     },
     "main": "./source/main.js",
-    "homepage": "https://github.com/javascribble/quantum-element#readme",
+    "homepage": "https://github.com/javascribble/quantum-webgpu#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/javascribble/quantum-element.git"
+        "url": "git+https://github.com/javascribble/quantum-webgpu.git"
     },
     "bugs": {
-        "url": "https://github.com/javascribble/quantum-element/issues"
+        "url": "https://github.com/javascribble/quantum-webgpu/issues"
     },
-    "keywords": [
-        "web",
-        "components"
-    ],
+    "keywords": [],
     "files": [
         "source"
     ]

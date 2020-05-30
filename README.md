@@ -1,1 +1,1 @@
-# repository-template-quantum
+# quantum-webgpu
