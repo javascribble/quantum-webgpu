@@ -1,0 +1,38 @@
+{
+    "name": "@javascribble/quantum-element",
+    "description": "",
+    "version": "0.0.0",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "@javascribble/quantum": "*",
+        "@javascribble/rollup-plugin-modulify": "*",
+        "@rollup/plugin-node-resolve": "*",
+        "npm-run-all": "*",
+        "rollup": "*",
+        "serve": "*"
+    },
+    "scripts": {
+        "serve": "serve ./",
+        "build": "rollup -c quantum-element.rollup.config.js",
+        "watch": "rollup -w -c quantum-element.rollup.config.js",
+        "start": "npm-run-all --parallel serve watch",
+        "postversion": "npm publish --access public"
+    },
+    "main": "./source/main.js",
+    "homepage": "https://github.com/javascribble/quantum-element#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/javascribble/quantum-element.git"
+    },
+    "bugs": {
+        "url": "https://github.com/javascribble/quantum-element/issues"
+    },
+    "keywords": [
+        "web",
+        "components"
+    ],
+    "files": [
+        "source"
+    ]
+}
