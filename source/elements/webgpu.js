@@ -1,10 +1,13 @@
+import { Quantum, define } from '@javascribble/quantum';
 import { createCanvas, resizeCanvas, getContext } from '../output/canvas.js';
 import { loadImage } from '../network/loader.js';
+import { webgpu } from '../templates/webgpu.js';
 
-export class WebGPU extends HTMLElement {
+export class WebGPU extends Quantum {
     constructor() {
-        super();
+        super(webgpu);
 
+        // TODO: Unfinished.
         this.canvas = createCanvas();
         this.context = getContext(this.canvas);
         this.appendChild(this.canvas);
@@ -30,4 +33,4 @@ export class WebGPU extends HTMLElement {
     }
 }
 
-customElements.define('webgpu-plugin', Video);
+define(WebGPU);

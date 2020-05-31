@@ -5,12 +5,12 @@
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
-        "@javascribble/quantum": "*",
+        "@javascribble/quantum": "^0.2.13",
         "@javascribble/rollup-plugin-modulify": "*",
         "@rollup/plugin-node-resolve": "*",
         "npm-run-all": "*",
-        "rollup": "*",
-        "serve": "*"
+        "rollup": "^2.12.0",
+        "serve": "^11.3.1"
     },
     "scripts": {
         "serve": "serve ./",
