@@ -1,11 +1,12 @@
 {
     "name": "@javascribble/quantum-webgpu",
     "description": "",
-    "version": "0.0.0",
+    "version": "0.3.0",
     "license": "MIT",
-    "dependencies": {},
+    "dependencies": {
+        "@javascribble/quantum": "^0.4.5"
+    },
     "devDependencies": {
-        "@javascribble/quantum": "^0.3.0",
         "live-server": "*"
     },
     "scripts": {

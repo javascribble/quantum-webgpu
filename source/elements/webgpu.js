@@ -1,11 +1,10 @@
-import { Quantum, define } from '../../references/quantum.js';
+import { Component } from '../../references/quantum.js';
 import { createCanvas, resizeCanvas, getContext } from '../output/canvas.js';
 import { loadImage } from '../network/loader.js';
-import { webgpu } from '../templates/webgpu.js';
 
-export class WebGPU extends Quantum {
+export class WebGPU extends Component {
     constructor() {
-        super(webgpu);
+        super();
 
         // TODO: Unfinished.
         this.canvas = createCanvas();
@@ -26,6 +25,10 @@ export class WebGPU extends Quantum {
         engine.systems.add(this);
     }
 
+    static template = document.querySelector('#quantum-webgpu');
+
+    static attributes = [];
+
     animate(deltaTime) {
         resizeCanvas(this.canvas);
         for (const { renderable } of this.entities) {
@@ -33,7 +36,7 @@ export class WebGPU extends Quantum {
     }
 }
 
-define(WebGPU);
+customElements.define('quantum-webgpu', WebGPU);
 
 // import { enableRenderableSystem } from './systems/renderable';
 // import { enableRendererSystem } from './systems/renderer';
