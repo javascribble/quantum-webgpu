@@ -1,5 +1,3 @@
-const resources = [
-    '/source/templates/webgpu.html'
-];
+import '/source/main.js';
 
-Promise.all(resources.map(resource => fetch(resource).then(response => response.text().then(html => document.body.insertAdjacentHTML('beforeend', html)))));
+document.body.style.visibility = 'visible';
