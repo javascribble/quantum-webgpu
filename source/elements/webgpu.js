@@ -1,8 +1,9 @@
+import { Component, template, define } from '../import.js';
 import { createCanvas, resizeCanvas, getContext } from '../output/canvas.js';
 import { loadImage } from '../network/loader.js';
 import html from '../templates/webgpu.js';
 
-export class WebGPU extends quantum.Component {
+export class WebGPU extends Component {
     constructor() {
         super();
 
@@ -25,7 +26,7 @@ export class WebGPU extends quantum.Component {
         engine.systems.add(this);
     }
 
-    static template = quantum.template(html);
+    static template = template(html);
 
     static attributes = [];
 
@@ -36,7 +37,7 @@ export class WebGPU extends quantum.Component {
     }
 }
 
-quantum.define('quantum-webgpu', WebGPU);
+define('quantum-webgpu', WebGPU);
 
 // import { enableRenderableSystem } from './systems/renderable';
 // import { enableRendererSystem } from './systems/renderer';
