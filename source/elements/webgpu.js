@@ -1,4 +1,3 @@
-import { Component, template, define } from '../import.js';
 import { createCanvas, resizeCanvas, getContext } from '../output/canvas.js';
 import { loadImage } from '../network/loader.js';
 import html from '../templates/webgpu.js';
