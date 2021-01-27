@@ -28,4 +28,6 @@ export const loadTexture = async (resource) => {
     }
 }
 
+export const loadArrayBuffer = (url, options) => fetch(url, options).then(response => response.arrayBuffer());
+
 //const loadImageBitmap = (image, options) => createImageBitmap(image, options.x, options.y, options.w, options.h);
