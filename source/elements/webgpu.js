@@ -2,6 +2,8 @@ import { createCanvas, resizeCanvas, getContext } from '../output/canvas.js';
 import { loadImage } from '../network/loader.js';
 import html from '../templates/webgpu.js';
 
+const { Component, template, define } = quantum;
+
 export class WebGPU extends Component {
     constructor() {
         super();
