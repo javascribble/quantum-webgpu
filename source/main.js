@@ -1,3 +1,3 @@
-import * as webgpu from './elements/webgpu.js';
+import { WebGPU } from './elements/webgpu.js';
 
-Object.assign(quantum, webgpu);
+Quantum.WebGPU = WebGPU;
