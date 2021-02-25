@@ -2,10 +2,11 @@ import '/node_modules/@javascribble/quantum/source/main.js';
 import '/source/main.js';
 
 const source = document.querySelector('img');
+const webgpu = document.querySelector('quantum-webgpu');
 
-canvas.addEventListener('resize', event => {
-    console.log(event);
-    canvas.drawImage({
+webgpu.addEventListener('resize', event => {
+    webgpu.setResolution();
+    webgpu.drawImage({
         source,
         sx: 0,
         sy: 0,

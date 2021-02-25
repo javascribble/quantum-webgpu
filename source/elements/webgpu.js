@@ -1,12 +1,10 @@
-import { createCanvas, resizeCanvas, getContext } from '../output/canvas.js';
 import { loadImage } from '../network/loader.js';
 import html from '../templates/webgpu.js';
 
-export class WebGPU extends Quantum {
+export class WebGPU extends Quantum.Canvas {
     constructor() {
         super();
 
-        // TODO: Unfinished.
         this.canvas = createCanvas();
         this.context = getContext(this.canvas);
         this.appendChild(this.canvas);
@@ -25,10 +23,8 @@ export class WebGPU extends Quantum {
         engine.systems.add(this);
     }
 
-    animate(deltaTime) {
-        resizeCanvas(this.canvas);
-        for (const { renderable } of this.entities) {
-        }
+    getContext() {
+        return super.getContext('gpupresent');
     }
 }
 
@@ -44,4 +40,4 @@ WebGPU.define('quantum-webgpu', html);
 
 //     enableRenderableSystem(options, device);
 //     await enableRendererSystem(options, device);
-// }; 
+// };
