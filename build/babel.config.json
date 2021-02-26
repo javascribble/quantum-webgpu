@@ -1,0 +1,8 @@
+{
+	"presets": [
+		"minify"
+	],
+	"plugins": [
+		"@babel/plugin-syntax-class-properties"
+	]
+}

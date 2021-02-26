@@ -1,0 +1,15 @@
+{
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/plugin-syntax-class-properties": "^7.12.1",
+        "@rollup/plugin-babel": "^5.2.2",
+        "@rollup/plugin-commonjs": "^14.0.0",
+        "@rollup/plugin-node-resolve": "^8.4.0",
+        "babel-preset-minify": "^0.5.1",
+        "html-minifier": "^4.0.0",
+        "rollup": "^2.36.2"
+    },
+    "scripts": {
+        "start": "rollup -c rollup.config.js"
+    }
+}
