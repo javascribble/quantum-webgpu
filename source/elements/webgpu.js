@@ -1,5 +1,4 @@
 import { loadImage } from '../network/loader.js';
-import html from '../templates/webgpu.js';
 
 export class WebGPU extends Quantum.Canvas {
     constructor() {
@@ -27,8 +26,6 @@ export class WebGPU extends Quantum.Canvas {
         return super.getContext('gpupresent');
     }
 }
-
-WebGPU.define('quantum-webgpu', html);
 
 // import { enableRenderableSystem } from './systems/renderable';
 // import { enableRendererSystem } from './systems/renderer';
