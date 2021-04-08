@@ -1,4 +1,10 @@
-import { parseObj } from '../parsers/obj';
+import { parseObj } from '../utilities/parser.js';
+
+const { loaders, loadText, } = quantum;
+
+loaders.obj = loadText;
+loaders.mtl = loadText;
+loaders.spv = async (url) => new Uint32Array(await engine.loadArrayBuffer(url));
 
 export const loadModel = async (resource) => {
     // TODO: Add other formats.
