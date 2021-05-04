@@ -1,7 +1,7 @@
-export const getGPUShaderStageConstant = (type) => GPUShaderStage[type];
-export const getGPUBufferUsageConstant = (type) => GPUBufferUsage[type];
-export const getGPUTextureUsageConstant = (type) => GPUTextureUsage[type];
-export const getGPUColorWriteConstant = (type) => GPUColorWrite[type];
+const getGPUShaderStageConstant = type => GPUShaderStage[type];
+const getGPUBufferUsageConstant = type => GPUBufferUsage[type];
+const getGPUTextureUsageConstant = type => GPUTextureUsage[type];
+const getGPUColorWriteConstant = type => GPUColorWrite[type];
 
 export const indexBufferUsage = getGPUBufferUsageConstant("INDEX");
 export const vertexBufferUsage = getGPUBufferUsageConstant("VERTEX");

@@ -1,12 +1,12 @@
 ﻿{
-    "image": "Kal256.png",
-	"sprites": [
-		{
-			"name": "default",
-			"x": 0,
-			"y": 0,
-			"w": 256,
-			"h": 256
-		}
-	]
+    "image": "image.png",
+    "sprites": [
+        {
+            "name": "default",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 16
+        }
+    ]
 }

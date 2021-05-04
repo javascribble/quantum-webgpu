@@ -14,3 +14,5 @@ export const createTexture = (device, options) => device.createTexture({ ...defa
 export const bufferTexture = (device) => {
 
 };
+
+//export const createImageBitmap = sprite => await createImageBitmap(image, sprite.x, sprite.y, sprite.w, sprite.h);

@@ -3,13 +3,13 @@ body {
     margin: 0;
 }
 
-img {
-    display: none;
-}
-
-div {
+#container {
     overflow: auto;
     resize: both;
-    width: 500px;
-    height: 500px;
+}
+
+#display {
+    position: absolute;
+    font-size: xx-large;
+    text-shadow: 1px 1px white;
 }

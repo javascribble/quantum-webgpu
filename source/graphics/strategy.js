@@ -1,4 +1,3 @@
-//import { orthographicMatrix4 } from '../../graphics/main';
 import { bufferData, createIndexBuffer, createUniformBuffer, createVertexBuffer } from './buffers';
 import { createDepthTexture, createSampledTexture } from './textures';
 import { createCanvasViewport } from './viewport';

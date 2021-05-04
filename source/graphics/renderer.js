@@ -21,7 +21,8 @@ export const enableRendererSystem = async (rendererOptions) => {
     const commands = new Map();
     const targets = new Map();
 
-    const device = options.device;
+    const adapter = await navigator.gpu.requestAdapter();
+    const device = await adapter.requestDevice();
     for (const canvas of options.canvases || [createCanvas(options)]) {
         const swapChain = await createSwapChain(device, canvas);
         targets.set(canvas.name, { canvas, swapChain });
@@ -56,4 +57,4 @@ export const enableRendererSystem = async (rendererOptions) => {
         // TODO: Support multiple queues.
         device.defaultQueue.submit(encodedCommands);
     });
-}; 
+};
