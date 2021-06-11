@@ -11,7 +11,7 @@
         "live-server": "*"
     },
     "scripts": {
-        "build": "cd ../rollup-quantum-build && npm start ../quantum-webgpu/source/main.js ../quantum-webgpu/build",
+        "build": "cd ../rollup-quantum-build && npm start ../quantum-webgpu/source ../quantum-webgpu/build",
         "start": "live-server --open=/test/debug.html",
         "postversion": "npm publish --access public"
     },
