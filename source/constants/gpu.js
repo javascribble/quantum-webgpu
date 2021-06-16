@@ -1,15 +1,15 @@
-const getGPUShaderStageConstant = type => GPUShaderStage[type];
-const getGPUBufferUsageConstant = type => GPUBufferUsage[type];
-const getGPUTextureUsageConstant = type => GPUTextureUsage[type];
-const getGPUColorWriteConstant = type => GPUColorWrite[type];
+const getShaderConstant = type => GPUShaderStage[type];
+const getBufferConstant = type => GPUBufferUsage[type];
+const getTextureConstant = type => GPUTextureUsage[type];
+const getColorConstant = type => GPUColorWrite[type];
 
-export const indexBufferUsage = getGPUBufferUsageConstant("INDEX");
-export const vertexBufferUsage = getGPUBufferUsageConstant("VERTEX");
-export const uniformBufferUsage = getGPUBufferUsageConstant("UNIFORM");
-export const copySourceBufferUsage = getGPUBufferUsageConstant("COPY_SRC");
-export const copyDestinationBufferUsage = getGPUBufferUsageConstant("COPY_DST");
+export const indexBufferUsage = getBufferConstant("INDEX");
+export const vertexBufferUsage = getBufferConstant("VERTEX");
+export const uniformBufferUsage = getBufferConstant("UNIFORM");
+export const copySourceBufferUsage = getBufferConstant("COPY_SRC");
+export const copyDestinationBufferUsage = getBufferConstant("COPY_DST");
 
-export const outputAttachmentTextureUsage = getGPUTextureUsageConstant("OUTPUT_ATTACHMENT");
-export const copyDestinationTextureUsage = getGPUTextureUsageConstant("COPY_DST");
-export const copySourceTextureUsage = getGPUTextureUsageConstant("COPY_SRC");
-export const sampledTextureUsage = getGPUTextureUsageConstant("SAMPLED");
+export const outputAttachmentTextureUsage = getTextureConstant("OUTPUT_ATTACHMENT");
+export const copyDestinationTextureUsage = getTextureConstant("COPY_DST");
+export const copySourceTextureUsage = getTextureConstant("COPY_SRC");
+export const sampledTextureUsage = getTextureConstant("SAMPLED");

@@ -15,4 +15,4 @@ export const bufferTexture = (device) => {
 
 };
 
-//export const createImageBitmap = sprite => await createImageBitmap(image, sprite.x, sprite.y, sprite.w, sprite.h);
+export const createImageBitmap = sprite => await createImageBitmap(image, sprite.x, sprite.y, sprite.w, sprite.h);

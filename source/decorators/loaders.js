@@ -1,3 +1,3 @@
-const { loaders } = quantum;
+const { loaders, loadText } = quantum;
 
-loaders.spv = (url, options) => fetch(url, options).then(response => new Uint32Array(response.arrayBuffer()));
+loaders.wgsl = loadText;
