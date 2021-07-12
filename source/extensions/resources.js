@@ -1,4 +1,4 @@
-import { WebGPU } from '../elements/webgpu.js';
+const { WebGPU } = Quantum;
 
 WebGPU.prototype.load = function (scene) {
     for (const [type, options] of Object.entries(scene)) {

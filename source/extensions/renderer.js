@@ -1,4 +1,4 @@
-import { WebGPU } from '../elements/webgpu.js';
+const { WebGPU } = Quantum;
 
 WebGPU.prototype.draw = function () {
     const data = {
