@@ -28,3 +28,5 @@ export class WebGPU extends Quantum.Canvas {
         });
     }
 }
+
+WebGPU.define('quantum-webgpu');
