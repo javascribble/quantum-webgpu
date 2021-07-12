@@ -4,18 +4,18 @@
     "version": "1.5.0",
     "license": "MIT",
     "dependencies": {
-        "@javascribble/quantum": "^1.5.0",
-        "@javascribble/quantum-canvas": "^1.5.0"
+        "@javascribble/quantum": "^1.5.8",
+        "@javascribble/quantum-canvas": "^1.5.10"
     },
     "devDependencies": {
         "live-server": "*"
     },
     "scripts": {
-        "build": "cd ../rollup-quantum-build && npm start ../quantum-webgpu/source ../quantum-webgpu/build",
+        "build": "cd ../rollup-quantum-build && npm start ../quantum-webgpu",
         "start": "live-server --open=/test/debug.html",
-        "postversion": "npm publish --access public"
+        "postversion": "npm run build && npm publish --access public"
     },
-    "main": "./source/main.js",
+    "main": "./bundles/main.js",
     "homepage": "https://github.com/javascribble/quantum-webgpu#readme",
     "repository": {
         "type": "git",
@@ -31,6 +31,7 @@
     ],
     "files": [
         "build",
+		"bundles",
         "source"
     ]
 }
