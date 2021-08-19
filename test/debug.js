@@ -8,28 +8,24 @@ import '/bundles/main-plugins.js';
 
 const display = document.querySelector('#display');
 const webgpu = document.querySelector('quantum-webgpu');
+await webgpu.initialize();
 
 const { load } = quantum;
-const { context, adapter, device } = webgpu;
+const { context, device, format } = webgpu;
 
 const path = '/test/resources/';
 const resources = ['vertex.wgsl', 'fragment.wgsl', 'scene.json', 'image.png'];
 const [vertexShader, fragmentShader, scene, image] = await Promise.all(resources.map(resource => load(path + resource)));
 
-const format = context.getPreferredFormat(adapter);
 const pipeline = device.createRenderPipeline({
     vertex: {
         module: device.createShaderModule({ code: vertexShader }),
-        entryPoint: 'main',
+        entryPoint: 'main'
     },
     fragment: {
         module: device.createShaderModule({ code: fragmentShader }),
         entryPoint: 'main',
-        targets: [
-            {
-                format,
-            },
-        ]
+        targets: [{ format }]
     },
     primitive: {
         topology: 'triangle-list'
@@ -46,9 +42,9 @@ const animation = quantum.animate(({ delta }) => {
     const renderPassDescriptor = {
         colorAttachments: [
             {
-                storeOp: 'store',
                 loadValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
-                view: textureView
+                view: textureView,
+                storeOp: 'store'
             }
         ]
     };
@@ -65,3 +61,5 @@ const animation = quantum.animate(({ delta }) => {
 });
 
 animation.start();
+
+document.body.style.visibility = 'visible';

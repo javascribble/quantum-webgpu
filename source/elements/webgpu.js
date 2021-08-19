@@ -1,31 +1,21 @@
-const adapter = await navigator.gpu.requestAdapter();
-const device = await adapter.requestDevice();
+import { canvasOptions } from '../constants/canvas.js';
 
 export class WebGPU extends Quantum.Canvas {
-    constructor() {
-        super();
-
-        this.adapter = adapter;
-        this.device = device;
-    }
-
     getContext() {
-        return super.getContext('gpupresent');
+        return super.getContext('webgpu', canvasOptions);
     }
 
-    resize(event) {
-        super.resize();
+    async initialize() {
+        this.adapter = await navigator.gpu.requestAdapter();
+        this.format = this.context.getPreferredFormat(this.adapter);
+        this.device = await this.adapter.requestDevice();
+        this.context.configure(this);
+    }
 
-        const contentBox = event.detail.devicePixelContentBoxSize[0];
-        const format = this.context.getPreferredFormat(adapter);
-        this.context.configure({
-            device,
-            format,
-            size: {
-                width: contentBox.inlineSize,
-                height: contentBox.blockSize,
-            }
-        });
+    resize(size, event) {
+        super.resize(size, event);
+
+        this.context.configure(this);
     }
 }
 
