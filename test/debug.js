@@ -11,49 +11,22 @@ const webgpu = document.querySelector('quantum-webgpu');
 await webgpu.initialize();
 
 const { load } = quantum;
-const { context, device, format } = webgpu;
 
 const path = '/test/resources/';
 const resources = ['vertex.wgsl', 'fragment.wgsl', 'scene.json', 'image.png'];
 const [vertexShader, fragmentShader, scene, image] = await Promise.all(resources.map(resource => load(path + resource)));
+scene.shaders[0].source = vertexShader;
+scene.shaders[1].source = fragmentShader;
+scene.textures[0].source = image;
 
-const pipeline = device.createRenderPipeline({
-    vertex: {
-        module: device.createShaderModule({ code: vertexShader }),
-        entryPoint: 'main'
-    },
-    fragment: {
-        module: device.createShaderModule({ code: fragmentShader }),
-        entryPoint: 'main',
-        targets: [{ format }]
-    },
-    primitive: {
-        topology: 'triangle-list'
-    }
-});
+const pipeline = webgpu.load(scene);
 
 const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     display.innerHTML = `FPS: ${fps} Count: ${1}`;
 
-    const commandEncoder = device.createCommandEncoder();
-    const textureView = context.getCurrentTexture().createView();
-    const renderPassDescriptor = {
-        colorAttachments: [
-            {
-                loadValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
-                view: textureView,
-                storeOp: 'store'
-            }
-        ]
-    };
-
-    const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
-    passEncoder.setPipeline(pipeline);
-    passEncoder.draw(3, 1, 0, 0);
-    passEncoder.endPass();
-    device.queue.submit([commandEncoder.finish()]);
+    webgpu.draw(pipeline);
 
     if (fps > 0 && fps < 30) {
         animation.stop();
