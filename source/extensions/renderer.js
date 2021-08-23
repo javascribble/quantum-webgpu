@@ -1,12 +1,17 @@
+import { vertexBufferUsage } from '../constants/gpu.js';
+
 const { WebGPU } = Quantum;
 
 WebGPU.prototype.draw = function (pipeline) {
-    // const texture = this.device.createTexture({
-    //     size: this.size,
-    //     format: this.format,
-    //     sampleCount: 4,
-    //     usage: GPUTextureUsage.RENDER_ATTACHMENT,
+    // const vertexBuffer = this.device.createBuffer({
+    //     usage: vertexBufferUsage,
+    //     mappedAtCreation: true,
+    //     size: 4
     // });
+
+    // new Float32Array(vertexBuffer.getMappedRange()).set(cubeVertexArray);
+    // vertexBuffer.unmap();
+
 
     const commandEncoder = this.device.createCommandEncoder();
     const textureView = this.context.getCurrentTexture().createView();
@@ -15,7 +20,6 @@ WebGPU.prototype.draw = function (pipeline) {
             {
                 loadValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
                 view: textureView,
-                //resolveTarget for multisampling
                 storeOp: 'store'
             }
         ]

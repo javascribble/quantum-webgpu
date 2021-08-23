@@ -13,7 +13,7 @@ await webgpu.initialize();
 const { load } = quantum;
 
 const path = '/test/resources/';
-const resources = ['vertex.wgsl', 'fragment.wgsl', 'scene.json', 'image.png'];
+const resources = ['triangle.vert.wgsl', 'triangle.frag.wgsl', 'scene.json', 'image.png'];
 const [vertexShader, fragmentShader, scene, image] = await Promise.all(resources.map(resource => load(path + resource)));
 scene.shaders[0].source = vertexShader;
 scene.shaders[1].source = fragmentShader;

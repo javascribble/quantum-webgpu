@@ -17,9 +17,6 @@ WebGPU.prototype.load = function (scene) {
         primitive: {
             topology: 'triangle-list'
         }
-        // multisample: {
-        //     count: 4
-        // }
     });
 
     return pipeline;

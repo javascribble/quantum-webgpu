@@ -12,4 +12,3 @@ export const copyDestinationBufferUsage = getBufferConstant("COPY_DST");
 export const outputAttachmentTextureUsage = getTextureConstant("OUTPUT_ATTACHMENT");
 export const copyDestinationTextureUsage = getTextureConstant("COPY_DST");
 export const copySourceTextureUsage = getTextureConstant("COPY_SRC");
-export const sampledTextureUsage = getTextureConstant("SAMPLED");
