@@ -1,88 +1,66 @@
 {
-    "shaders": [
+	"shaders": [
+		{
+			"source": "/test/resources/triangle.vert.wgsl"
+		},
+		{
+			"source": "/test/resources/triangle.frag.wgsl",
+			"targets": [
+				{
+					"format": "bgra8unorm"
+				}
+			]
+		},
+		{
+			"source": "/test/resources/cube.vert.wgsl",
+			"buffers": [
+				{
+					"arrayStride": 40,
+					"attributes": [
+						{
+							"shaderLocation": 0,
+							"format": "float32x4",
+							"offset": 0
+						},
+						{
+							"shaderLocation": 1,
+							"format": "float32x2",
+							"offset": 32
+						}
+					]
+				}
+			]			
+		},
+		{
+			"source": "/test/resources/cube.frag.wgsl",
+			"targets": [
+				{
+					"format": "bgra8unorm"
+				}
+			]
+		}		
+	],
+    "pipelines": [
         {
-            "name": "vertex"
+            "vertex": 0,
+			"fragment": 1,
+            "primitive": {
+				"topology": "triangle-list"
+			}			
         },
-        {
-            "name": "fragment"
-        }
-    ],
-    "programs": [
-        {
-            "primitiveTopology": "triangle-strip",
-            "vertexState": {
-                "indexFormat": "uint16",
-                "vertexBuffers": [
-                    {
-                        "arrayStride": 32,
-                        "stepMode": "vertex",
-                        "attributes": [
-                            {
-                                "shaderLocation": 0,
-                                "offset": 0,
-                                "format": "float2"
-                            },
-                            {
-                                "shaderLocation": 1,
-                                "offset": 8,
-                                "format": "float2"
-                            }
-                        ]
-                    },
-                    {
-                        "arrayStride": 24,
-                        "stepMode": "instance",
-                        "attributes": [
-                            {
-                                "shaderLocation": 2,
-                                "offset": 0,
-                                "format": "float2"
-                            },
-                            {
-                                "shaderLocation": 3,
-                                "offset": 8,
-                                "format": "float"
-                            },
-                            {
-                                "shaderLocation": 4,
-                                "offset": 12,
-                                "format": "float2"
-                            },
-                            {
-                                "shaderLocation": 5,
-                                "offset": 20,
-                                "format": "float"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "colorStates": [
-                {
-                    "writeMask": "ALL",
-                    "format": "bgra8unorm",
-                    "alphaBlend": {
-                        "srcFactor": "src-alpha",
-                        "dstFactor": "one-minus-src-alpha",
-                        "operation": "add"
-                    },
-                    "colorBlend": {
-                        "srcFactor": "src-alpha",
-                        "dstFactor": "one-minus-src-alpha",
-                        "operation": "add"
-                    }
-                }
-            ],
-            "depthStencilState": {
-                "depthWriteEnabled": true,
-                "depthCompare": "less",
-                "format": "depth24plus-stencil8"
-            },
-            "rasterizationState": {
-                "frontFace": "cw",
-                "cullMode": "none"
-            }
-        }
+		{
+			"vertex": 2,
+			"fragment": 3,
+			"depthStencilState": {
+				"depthWriteEnabled": true,
+				"depthCompare": "less",
+				"format": "depth24plus"
+			},
+		    "primitive": {
+				"topology": "triangle-list",
+				"cullMode": "back"
+			}
+		}
     ],
     "layouts": [
         {
@@ -108,17 +86,7 @@
     "textures": [
         {
             "name": "default",
-            "image": "image.png"
-        }
-    ],
-    "sprites": [
-        {
-            "name": "default",
-            "texture": 0,
-            "x": 0,
-            "y": 0,
-            "w": 16,
-            "h": 16
+            "image": "/test/resources/image.png"
         }
     ],
     "passes": [

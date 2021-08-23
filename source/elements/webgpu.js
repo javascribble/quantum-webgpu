@@ -7,9 +7,9 @@ export class WebGPU extends Quantum.Canvas {
 
     async initialize() {
         this.adapter = await navigator.gpu.requestAdapter();
-        this.format = this.context.getPreferredFormat(this.adapter);
-
         this.device = await this.adapter.requestDevice();
+
+        this.format = this.context.getPreferredFormat(this.adapter);
         this.context.configure(this);
     }
 

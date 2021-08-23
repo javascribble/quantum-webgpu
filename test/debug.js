@@ -12,24 +12,19 @@ await webgpu.initialize();
 
 const { load } = quantum;
 
-const path = '/test/resources/';
-const resources = ['triangle.vert.wgsl', 'triangle.frag.wgsl', 'scene.json', 'image.png'];
-const [vertexShader, fragmentShader, scene, image] = await Promise.all(resources.map(resource => load(path + resource)));
-scene.shaders[0].source = vertexShader;
-scene.shaders[1].source = fragmentShader;
-scene.textures[0].source = image;
-
-const pipeline = webgpu.load(scene);
+const scene = await load('/test/resources/scene.json');
+await webgpu.load(scene);
 
 const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     display.innerHTML = `FPS: ${fps} Count: ${1}`;
 
-    webgpu.draw(pipeline);
+    webgpu.draw();
 
     if (fps > 0 && fps < 30) {
         animation.stop();
+        webgpu.unload(scene);
     }
 });
 
