@@ -12,19 +12,19 @@ await webgpu.initialize();
 
 const { load } = quantum;
 
-const scene = await load('/test/resources/scene.json');
-await webgpu.load(scene);
+const data = await load('/test/resources/data.json');
+await webgpu.load(data);
 
 const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     display.innerHTML = `FPS: ${fps} Count: ${1}`;
 
-    webgpu.draw();
+    webgpu.draw(data);
 
     if (fps > 0 && fps < 30) {
         animation.stop();
-        webgpu.unload(scene);
+        webgpu.unload(data);
     }
 });
 

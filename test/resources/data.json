@@ -1,0 +1,127 @@
+{
+    "textures": [
+        {
+            "name": "default",
+            "source": "./resources/image.png"
+        }
+    ],
+    "buffers": [
+		{
+			"name": "cube",
+			"source": "./resources/mesh.json"
+		}	
+	],
+	"shaders": [
+		{
+			"source": "./resources/triangle.vert.wgsl"
+		},
+		{
+			"source": "./resources/triangle.frag.wgsl",
+			"targets": [
+				{
+					"format": "bgra8unorm"
+				}
+			]
+		},
+		{
+			"source": "./resources/cube.vert.wgsl",
+			"buffers": [
+				{
+					"arrayStride": 40,
+					"attributes": [
+						{
+							"shaderLocation": 0,
+							"format": "float32x4",
+							"offset": 0
+						},
+						{
+							"shaderLocation": 1,
+							"format": "float32x2",
+							"offset": 32
+						}
+					]
+				}
+			]			
+		},
+		{
+			"source": "./resources/cube.frag.wgsl",
+			"targets": [
+				{
+					"format": "bgra8unorm"
+				}
+			]
+		}		
+	],
+    "pipelines": [
+        {
+            "vertex": 0,
+			"fragment": 1,
+            "primitive": {
+				"topology": "triangle-list"
+			}			
+        },
+		{
+			"vertex": 2,
+			"fragment": 3,
+			"depthStencilState": {
+				"depthWriteEnabled": true,
+				"depthCompare": "less",
+				"format": "depth24plus"
+			},
+		    "primitive": {
+				"topology": "triangle-list",
+				"cullMode": "back"
+			}
+		}
+    ],
+    "layouts": [
+        {
+            "bindings": [
+                {
+                    "binding": 0,
+                    "visibility": "VERTEX",
+                    "type": "uniform-buffer"
+                },
+                {
+                    "binding": 1,
+                    "visibility": "FRAGMENT",
+                    "type": "sampler"
+                },
+                {
+                    "binding": 2,
+                    "visibility": "FRAGMENT",
+                    "type": "sampled-texture"
+                }
+            ]
+        }
+    ],
+	"scenes": [
+		{
+			"commands": [
+				{
+					"passes": [
+						{
+							"colorAttachments": [
+								{
+									"storeOp": "store",
+									"loadValue": {
+										"r": 0,
+										"g": 0,
+										"b": 0,
+										"a": 1
+									}
+								}
+							],
+							"depthStencilAttachment": {
+								"depthStoreOp": "store",
+								"depthLoadValue": 1,
+								"stencilStoreOp": "store",
+								"stencilLoadValue": "load"
+							}
+						}					
+					]
+				}
+			]
+		}
+	]
+}

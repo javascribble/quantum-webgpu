@@ -2,7 +2,7 @@ import { vertexBufferUsage } from '../constants/gpu.js';
 
 const { WebGPU } = Quantum;
 
-WebGPU.prototype.draw = function (pipeline = 0) {
+WebGPU.prototype.draw = function (data) {
     // const vertexBuffer = this.this.device.createBuffer({
     //     usage: vertexBufferUsage,
     //     mappedAtCreation: true,
@@ -47,13 +47,11 @@ WebGPU.prototype.draw = function (pipeline = 0) {
     //     matrixData.byteLength
     // );
 
-    const commandEncoder = this.device.createCommandEncoder();
-    const textureView = this.context.getCurrentTexture().createView();
     const renderPassDescriptor = {
         colorAttachments: [
             {
                 loadValue: { r: 0.0, g: 0.0, b: 0.0, a: 1.0 },
-                view: textureView,
+                view: this.context.getCurrentTexture().createView(),
                 storeOp: 'store'
             }
         ],
@@ -66,13 +64,24 @@ WebGPU.prototype.draw = function (pipeline = 0) {
         // }
     };
 
-    const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
+    const { scenes } = data;
+    for (const scene of scenes) {
+        const commands = [];
+        for (const command of scene.commands) {
+            const commandEncoder = this.device.createCommandEncoder();
+            for (const pass of command.passes) {
+                const passEncoder = commandEncoder.beginRenderPass(renderPassDescriptor);
+                passEncoder.setPipeline(this.pipelines[pipeline]);
+                // passEncoder.setBindGroup(0, uniformBindGroup);
+                // passEncoder.setVertexBuffer(0, verticesBuffer);
+                // passEncoder.draw(cubeVertexCount, numInstances, 0, 0);
+                passEncoder.draw(3, 1, 0, 0);
+                passEncoder.endPass();
+            }
 
-    passEncoder.setPipeline(this.pipelines[pipeline]);
-    // passEncoder.setBindGroup(0, uniformBindGroup);
-    // passEncoder.setVertexBuffer(0, verticesBuffer);
-    // passEncoder.draw(cubeVertexCount, numInstances, 0, 0);
-    passEncoder.draw(3, 1, 0, 0);
-    passEncoder.endPass();
-    this.device.queue.submit([commandEncoder.finish()]);
+            commands.push(commandEncoder.finish());
+        }
+
+        this.device.queue.submit(commands);
+    }
 };
