@@ -52,7 +52,7 @@
 			]
 		}		
 	],
-    "pipelines": [
+    "programs": [
         {
             "vertex": 0,
 			"fragment": 1,

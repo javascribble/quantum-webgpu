@@ -2,51 +2,7 @@ import { vertexBufferUsage } from '../constants/gpu.js';
 
 const { WebGPU } = Quantum;
 
-WebGPU.prototype.draw = function (data) {
-    // const vertexBuffer = this.this.device.createBuffer({
-    //     usage: vertexBufferUsage,
-    //     mappedAtCreation: true,
-    //     size: 4
-    // });
-
-    // new Float32Array(vertexBuffer.getMappedRange()).set(buffers[0]);
-    // vertexBuffer.unmap();
-
-    // const depthTexture = this.device.createTexture({
-    //     size: presentationSize,
-    //     format: 'depth24plus',
-    //     usage: GPUTextureUsage.RENDER_ATTACHMENT,
-    // });
-
-    // const numInstances = 16;
-    // const matrixFloatCount = 16;
-    // const matrixSize = 4 * matrixFloatCount;
-    // const uniformBufferSize = numInstances * matrixSize;
-    // const uniformBuffer = this.device.createBuffer({
-    //     size: uniformBufferSize,
-    //     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
-    // });
-
-    // const uniformBindGroup = this.device.createBindGroup({
-    //     layout: pipeline.getBindGroupLayout(0),
-    //     entries: [
-    //         {
-    //             binding: 0,
-    //             resource: {
-    //                 buffer: uniformBuffer,
-    //             },
-    //         },
-    //     ],
-    // });
-
-    // this.device.queue.writeBuffer(
-    //     uniformBuffer,
-    //     0,
-    //     matrixData.buffer,
-    //     matrixData.byteOffset,
-    //     matrixData.byteLength
-    // );
-
+WebGPU.prototype.draw = function () {
     const renderPassDescriptor = {
         colorAttachments: [
             {
@@ -64,7 +20,7 @@ WebGPU.prototype.draw = function (data) {
         // }
     };
 
-    const { scenes } = data;
+    const { pipelines, scenes } = this.data;
     for (const scene of scenes) {
         const commands = [];
         for (const command of scene.commands) {
