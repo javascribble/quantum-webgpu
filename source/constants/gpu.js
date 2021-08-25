@@ -9,6 +9,6 @@ export const uniformBufferUsage = getBufferConstant("UNIFORM");
 export const copySourceBufferUsage = getBufferConstant("COPY_SRC");
 export const copyDestinationBufferUsage = getBufferConstant("COPY_DST");
 
-export const outputAttachmentTextureUsage = getTextureConstant("OUTPUT_ATTACHMENT");
+export const renderAttachmentTextureUsage = getTextureConstant("RENDER_ATTACHMENT");
 export const copyDestinationTextureUsage = getTextureConstant("COPY_DST");
 export const copySourceTextureUsage = getTextureConstant("COPY_SRC");

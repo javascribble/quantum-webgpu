@@ -11,7 +11,7 @@ await webgpu.initialize();
 
 const { load } = quantum;
 
-const data = await load('./resources/debug.json');
+const data = await load('debug.json');
 await webgpu.load(data);
 
 const animation = quantum.animate(({ delta }) => {
