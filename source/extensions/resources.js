@@ -5,7 +5,7 @@ const { WebGPU } = Quantum;
 const { load } = quantum;
 
 WebGPU.prototype.load = async function (data) {
-    const { textures, buffers, shaders, programs, layouts, attachments, scenes } = data;
+    const { textures, buffers, shaders, programs, layouts, attachments, commandGroups } = data;
 
     for (const texture of textures) {
         texture.image = await load(texture.source);
@@ -30,8 +30,8 @@ WebGPU.prototype.load = async function (data) {
 
     }
 
-    for (const scene of scenes) {
-        for (const command of scene.commands) {
+    for (const commandGroup of commandGroups) {
+        for (const command of commandGroup.commands) {
             for (const pass of command.passes) {
                 const { colorAttachments } = pass.descriptor;
                 for (let i = 0; i < colorAttachments.length; i++) {

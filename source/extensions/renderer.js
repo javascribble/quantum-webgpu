@@ -1,11 +1,11 @@
-import { encodeScene } from '../graphics/scene.js';
+import { encodeCommands } from '../encoder/commands.js';
 
 const { WebGPU } = Quantum;
 
 WebGPU.prototype.draw = function (state) {
-    state.scenes[0].commands[0].passes[0].descriptor.colorAttachments[0].view = this.context.getCurrentTexture().createView();
+    state.commandGroups[0].commands[0].passes[0].descriptor.colorAttachments[0].view = this.context.getCurrentTexture().createView();
 
-    for (const scene of state.scenes) {
-        this.device.queue.submit(encodeScene(this.device, scene));
+    for (const commandGroup of state.commandGroups) {
+        this.device.queue.submit(encodeCommands(commandGroup.commands, this.device));
     }
 };
