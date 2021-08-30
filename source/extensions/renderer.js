@@ -1,4 +1,5 @@
-import { createRenderPipeline } from '../decorators/pipeline.js';
+import { createView } from '../context/texture.js';
+import { createRenderPipeline } from '../device/pipeline.js';
 import { encodeCommands } from '../encoder/commands.js';
 
 const { WebGPU } = Quantum;
@@ -8,11 +9,7 @@ WebGPU.prototype.render = function (state) {
     if (!state.pipeline) {
         state.pipeline = createRenderPipeline(this.device, {
             vertex: drawable.vertex,
-            fragment: drawable.fragment,
-            primitive: {
-                topology: "triangle-list",
-                cullMode: "back"
-            }
+            fragment: drawable.fragment
         });
     }
 
@@ -23,8 +20,8 @@ WebGPU.prototype.render = function (state) {
                     descriptor: {
                         colorAttachments: [
                             {
-                                view: this.context.getCurrentTexture().createView(),
-                                storeOp: "store",
+                                view: createView(this.context),
+                                storeOp: 'store',
                                 loadValue: {
                                     r: 0,
                                     g: 0,
@@ -49,5 +46,5 @@ WebGPU.prototype.render = function (state) {
         }
     ]
 
-    this.device.queue.submit(encodeCommands(commnands, this.device));
+    this.device.queue.submit(encodeCommands(commnands, this.device, this.context));
 };

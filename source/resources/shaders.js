@@ -1,4 +1,4 @@
-import { createShaderModule } from '../decorators/module.js';
+import { createShaderModule } from '../device/module.js';
 
 const { load } = quantum;
 

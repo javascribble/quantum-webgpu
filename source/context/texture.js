@@ -1,0 +1,1 @@
+export const createView = context => context.getCurrentTexture().createView()
