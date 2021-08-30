@@ -1,48 +1,29 @@
-import { createShaderModule } from '../decorators/module.js';
-import { createRenderPipeline } from '../decorators/pipeline.js';
+import { loadBuffers } from '../resources/buffers.js';
+import { loadTextures } from '../resources/textures.js';
+import { loadShaders } from '../resources/shaders.js';
 
 const { WebGPU } = Quantum;
-const { load } = quantum;
 
 WebGPU.prototype.load = async function (data) {
-    const { textures, buffers, shaders, programs, layouts, attachments, commandGroups } = data;
+    return {
+        buffers: await loadBuffers(this.device, data.buffers),
+        shaders: await loadShaders(this.device, data.shaders),
+        textures: await loadTextures(this.device, data.textures)
+    };
+};
 
-    for (const texture of textures) {
-        texture.image = await load(texture.source);
-    }
+WebGPU.prototype.unload = function (state) {
+    const { buffers, shaders, textures } = state;
 
     for (const buffer of buffers) {
-        buffer.vertices = await load(buffer.source);
+        //buffer.destroy();
     }
 
     for (const shader of shaders) {
-        shader.entryPoint = 'main';
-        shader.module = createShaderModule(this.device, { code: await load(shader.source) });
+        //shader.destroy();
     }
 
-    for (const program of programs) {
-        program.vertex = shaders[program.vertex];
-        program.fragment = shaders[program.fragment];
-        program.pipeline = createRenderPipeline(this.device, program);
+    for (const texture of textures) {
+        //texture.destroy();
     }
-
-    for (const layout of layouts) {
-
-    }
-
-    for (const commandGroup of commandGroups) {
-        for (const command of commandGroup.commands) {
-            for (const pass of command.passes) {
-                const { colorAttachments } = pass.descriptor;
-                for (let i = 0; i < colorAttachments.length; i++) {
-                    colorAttachments[i] = attachments[i];
-                }
-
-                pass.pipeline = programs[pass.pipeline].pipeline;
-            }
-        }
-    }
-};
-
-WebGPU.prototype.unload = function (data) {
 };

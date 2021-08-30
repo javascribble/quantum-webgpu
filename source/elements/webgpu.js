@@ -6,6 +6,11 @@ export class WebGPU extends Quantum.Canvas {
     }
 
     async initialize() {
+        if (this.device) {
+            this.context.unconfigure();
+            this.device.destroy();
+        }
+
         this.adapter = await navigator.gpu.requestAdapter();
         this.device = await this.adapter.requestDevice();
 
@@ -16,7 +21,8 @@ export class WebGPU extends Quantum.Canvas {
     resize(size, event) {
         super.resize(size, event);
 
-        this.context.configure(this);
+        // TODO: Reinitialize destroyed textures.
+        //this.context.configure(this);
     }
 }
 

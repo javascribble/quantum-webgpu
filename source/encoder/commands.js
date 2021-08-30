@@ -8,7 +8,7 @@ const encodeCommand = (command, encoder) => {
     for (const pass of command.passes) {
         if (pass.draws) {
             configureRenderPass(pass, encoder);
-        } else {
+        } else if (pass.dispatch) {
             configureComputePass(pass, encoder);
         }
     }

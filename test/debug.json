@@ -1,13 +1,6 @@
 {
-    "textures": [
-        {
-            "name": "default",
-            "source": "./resources/image.png"
-        }
-    ],
     "buffers": [
         {
-            "name": "cube",
             "source": "./resources/mesh.json"
         }
     ],
@@ -52,91 +45,9 @@
             ]
         }
     ],
-    "programs": [
+    "textures": [
         {
-            "vertex": 0,
-            "fragment": 1,
-            "primitive": {
-                "topology": "triangle-list"
-            }
-        },
-        {
-            "vertex": 2,
-            "fragment": 3,
-            "depthStencilState": {
-                "depthWriteEnabled": true,
-                "depthCompare": "less",
-                "format": "depth24plus"
-            },
-            "primitive": {
-                "topology": "triangle-list",
-                "cullMode": "back"
-            }
-        }
-    ],
-    "layouts": [
-        {
-            "bindings": [
-                {
-                    "binding": 0,
-                    "visibility": "VERTEX",
-                    "type": "uniform-buffer"
-                },
-                {
-                    "binding": 1,
-                    "visibility": "FRAGMENT",
-                    "type": "sampler"
-                },
-                {
-                    "binding": 2,
-                    "visibility": "FRAGMENT",
-                    "type": "sampled-texture"
-                }
-            ]
-        }
-    ],
-    "attachments": [
-        {
-            "storeOp": "store",
-            "loadValue": {
-                "r": 0,
-                "g": 0,
-                "b": 0,
-                "a": 1
-            }
-        },
-        {
-            "depthStoreOp": "store",
-            "depthLoadValue": 1,
-            "stencilStoreOp": "store",
-            "stencilLoadValue": "load"
-        }
-    ],
-    "commandGroups": [
-        {
-            "commands": [
-                {
-                    "passes": [
-                        {
-                            "descriptor": {
-                                "colorAttachments": [
-                                    0
-                                ]
-                            },
-                            "bindGroups": [],
-                            "pipeline": 0,
-                            "draws": [
-                                {
-                                    "count": 3,
-                                    "instances": 1,
-                                    "firstElement": 0,
-                                    "firstInstance": 0
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "source": "./resources/image.png"
         }
     ]
 }
