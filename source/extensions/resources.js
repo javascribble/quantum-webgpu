@@ -4,16 +4,16 @@ import { loadShaders } from '../resources/shaders.js';
 
 const { WebGPU } = Quantum;
 
-WebGPU.prototype.load = async function (data) {
+WebGPU.prototype.load = async function (options) {
     return {
-        buffers: await loadBuffers(this.device, data.buffers),
-        shaders: await loadShaders(this.device, data.shaders),
-        textures: await loadTextures(this.device, data.textures)
+        buffers: await loadBuffers(this.device, options.buffers),
+        shaders: await loadShaders(this.device, options.shaders),
+        textures: await loadTextures(this.device, options.textures)
     };
 };
 
-WebGPU.prototype.unload = function (state) {
-    const { buffers, shaders, textures } = state;
+WebGPU.prototype.unload = function (resources) {
+    const { buffers, shaders, textures } = resources;
 
     for (const buffer of buffers) {
         //buffer.destroy();

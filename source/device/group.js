@@ -1,4 +1,4 @@
-export const defaultBindGroupOptions = {
+export const defaultBindGroupDescriptor = {
 };
 
-export const createBindGroup = (device, options) => device.createBindGroup({ ...defaultBindGroupOptions, ...options });
+export const createBindGroup = (device, descriptor) => device.createBindGroup({ ...defaultBindGroupDescriptor, ...descriptor });

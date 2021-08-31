@@ -1,4 +1,4 @@
-export const defaultPipelineLayoutOptions = {
+export const defaultPipelineLayoutDescriptor = {
 };
 
-export const createPipelineLayout = (device, options) => device.createPipelineLayout({ ...defaultPipelineLayoutOptions, ...options });
+export const createPipelineLayout = (device, descriptor) => device.createPipelineLayout({ ...defaultPipelineLayoutDescriptor, ...descriptor });

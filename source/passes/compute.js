@@ -1,15 +1,9 @@
-export const configureComputePass = (pass, encoder) => {
-    const computePass = encoder.beginComputePass(pass.descriptor);
+import { configureBasicPass } from './basic.js';
 
-    const { pipeline, bindGroups } = pass;
-    computePass.setPipeline(pipeline);
-    if (bindGroups) {
-        for (let i = 0; i < bindGroups.length; i++) {
-            computePass.setBindGroup(i, bindGroups[i]);
-        }
-    }
+export const configureComputePass = (pass, options) => {
+    configureBasicPass(pass, options);
 
-    computePass.dispatch();
+    pass.dispatch();
 
-    computePass.endPass();
+    pass.endPass();
 };

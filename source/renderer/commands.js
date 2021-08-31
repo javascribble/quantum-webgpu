@@ -10,11 +10,6 @@ export const generateCommands = (state, device, context) => {
             fragment: drawable.fragment
         });
 
-        // const vertices = drawable.buffer.vertices;
-        // const vertexBuffer = createVertexBuffer(vertices.length);
-        // new Float32Array(vertexBuffer.getMappedRange()).set(vertices);
-        // vertexBuffer.unmap();
-
         // const uniformBuffer = device.createBuffer({
         //     size: matrix4.byteLength,
         //     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
@@ -67,17 +62,19 @@ export const generateCommands = (state, device, context) => {
                         //     stencilStoreOp: 'store',
                         // }
                     },
-                    bindGroups: [],
-                    //vertexBuffers: [],
-                    pipeline: state.pipeline,
-                    draws: [
-                        {
-                            count: 4, //cubeVertexCount
-                            instances: 1,
-                            firstElement: 0,
-                            firstInstance: 0
-                        }
-                    ]
+                    options: {
+                        bindGroups: [],
+                        //vertexBuffers: [],
+                        pipeline: state.pipeline,
+                        draws: [
+                            {
+                                count: 4, //cubeVertexCount
+                                instances: 1,
+                                firstElement: 0,
+                                firstInstance: 0
+                            }
+                        ]
+                    }
                 }
             ]
         }

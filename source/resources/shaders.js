@@ -12,7 +12,7 @@ export const loadShaders = async (device, options) => {
         const module = createShaderModule(device, { code: await load(option.source) });
         const shader = {
             ...defaultShaderOptions,
-            ...option, // TODO: Selectively copy properties.
+            ...option.descriptor,
             module
         };
 

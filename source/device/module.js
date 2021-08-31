@@ -1,4 +1,4 @@
-export const defaultShaderModuleOptions = {
+export const defaultShaderModuleDescriptor = {
 };
 
-export const createShaderModule = (device, options) => device.createShaderModule({ ...defaultShaderModuleOptions, ...options });
+export const createShaderModule = (device, descriptor) => device.createShaderModule({ ...defaultShaderModuleDescriptor, ...descriptor });

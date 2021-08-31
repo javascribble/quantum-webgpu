@@ -1,3 +1,5 @@
+import { createTexture } from '../device/texture.js';
+
 const { load } = quantum;
 
 export const defaultTextureOptions = {
@@ -6,14 +8,9 @@ export const defaultTextureOptions = {
 export const loadTextures = async (device, options) => {
     const textures = [];
     for (const option of options) {
-        const image = await load(option.source);
-
-        const texture = {
-            ...defaultTextureOptions,
-            image
-        };
-
-        textures.push(texture);
+        // const texture = createTexture(device, option.descriptor);
+        // const image = await load(option.source);
+        // textures.push(texture);
     }
 
     return textures;

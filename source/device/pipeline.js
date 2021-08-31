@@ -1,7 +1,7 @@
-export const defaultComputePipelineOptions = {
+export const defaultComputePipelineDescriptor = {
 };
 
-export const defaultRenderPipelineOptions = {
+export const defaultRenderPipelineDescriptor = {
     primitive: {
         topology: 'triangle-strip',
         stripIndexFormat: 'uint32',
@@ -17,6 +17,6 @@ export const defaultRenderPipelineOptions = {
     // }
 };
 
-export const createComputePipeline = (device, options) => device.createComputePipeline({ ...defaultComputePipelineOptions, ...options });
+export const createComputePipeline = (device, descriptor) => device.createComputePipeline({ ...defaultComputePipelineDescriptor, ...descriptor });
 
-export const createRenderPipeline = (device, options) => device.createRenderPipeline({ ...defaultRenderPipelineOptions, ...options });
+export const createRenderPipeline = (device, descriptor) => device.createRenderPipeline({ ...defaultRenderPipelineDescriptor, ...descriptor });

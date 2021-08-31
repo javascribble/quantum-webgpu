@@ -1,49 +1,43 @@
-export const configureRenderPass = (pass, encoder) => {
-    const renderPass = encoder.beginRenderPass(pass.descriptor);
+import { configureBasicPass } from './basic.js';
 
-    const { pipeline, bindGroups } = pass;
-    renderPass.setPipeline(pipeline);
-    if (bindGroups) {
-        for (let i = 0; i < bindGroups.length; i++) {
-            renderPass.setBindGroup(i, bindGroups[i]);
-        }
-    }
+export const configureRenderPass = (pass, options) => {
+    configureBasicPass(pass, options);
 
-    const { viewport, scissorRect, vertexBuffers, indexBuffer, draws } = pass;
+    const { viewport, scissorRect, vertexBuffers, indexBuffer, draws } = options;
     if (viewport) {
-        renderPass.setViewport(viewport.x, viewport.y, viewport.width, viewport.height, viewport.minDepth, viewport.maxDepth);
+        pass.setViewport(viewport.x, viewport.y, viewport.width, viewport.height, viewport.minDepth, viewport.maxDepth);
     }
 
     if (scissorRect) {
-        renderPass.setScissorRect(scissorRect.x, scissorRect.y, scissorRect.width, scissorRect.height);
+        pass.setScissorRect(scissorRect.x, scissorRect.y, scissorRect.width, scissorRect.height);
     }
 
     if (vertexBuffers) {
         for (let i = 0; i < vertexBuffers.length; i++) {
-            renderPass.setVertexBuffer(i, vertexBuffers[i]);
+            pass.setVertexBuffer(i, vertexBuffers[i]);
         }
     }
 
     if (indexBuffer) {
-        renderPass.setIndexBuffer(indexBuffer);
+        pass.setIndexBuffer(indexBuffer);
     }
 
     for (const draw of draws) {
         const { indexed, indirect } = draw;
         if (indexed) {
             if (indirect) {
-                renderPass.drawIndexedIndirect(draw.buffer, draw.offset);
+                pass.drawIndexedIndirect(draw.buffer, draw.offset);
             } else {
-                renderPass.drawIndexed(draw.count, draw.instances, draw.firstElement, draw.baseVertex, draw.firstInstance);
+                pass.drawIndexed(draw.count, draw.instances, draw.firstElement, draw.baseVertex, draw.firstInstance);
             }
         } else {
             if (indirect) {
-                renderPass.drawIndirect(draw.buffer, draw.offset);
+                pass.drawIndirect(draw.buffer, draw.offset);
             } else {
-                renderPass.draw(draw.count, draw.instances, draw.firstElement, draw.firstInstance);
+                pass.draw(draw.count, draw.instances, draw.firstElement, draw.firstInstance);
             }
         }
     }
 
-    renderPass.endPass();
+    pass.endPass();
 };

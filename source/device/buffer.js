@@ -1,11 +1,11 @@
 import { vertexBufferUsage, uniformBufferUsage, copyDestinationBufferUsage } from '../constants/gpu.js';
 
-export const defaultBufferOptions = {
+export const defaultBufferDescriptor = {
     mappedAtCreation: true
 };
 
-export const createUniformBuffer = (device, options) => createBuffer(device, { usage: uniformBufferUsage | copyDestinationBufferUsage, ...options });
+export const createUniformBuffer = (device, descriptor) => createBuffer(device, { usage: uniformBufferUsage | copyDestinationBufferUsage, ...descriptor });
 
-export const createVertexBuffer = (device, options) => createBuffer(device, { usage: vertexBufferUsage, ...options });
+export const createVertexBuffer = (device, descriptor) => createBuffer(device, { usage: vertexBufferUsage, ...descriptor });
 
-export const createBuffer = (device, options) => device.createBuffer({ ...defaultBufferOptions, ...options });
+export const createBuffer = (device, descriptor) => device.createBuffer({ ...defaultBufferDescriptor, ...descriptor });
