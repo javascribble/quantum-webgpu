@@ -13,7 +13,7 @@ export const encodeCommands = (commands, device, context) => {
                 configureComputePass(pass, encoder);
             }
 
-            passes.push(encoder.finish());
+            passes.push(encoder.finish(command.descriptor));
         }
     }
 

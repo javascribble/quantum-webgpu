@@ -15,6 +15,7 @@ const data = await load('debug.json');
 const resources = await webgpu.load(data);
 
 const object = { vertex: resources.shaders[0], fragment: resources.shaders[1] };
+//const object = { vertex: resources.shaders[2], fragment: resources.shaders[3], buffer: resources.buffers[0] };
 const state = { children: [object] };
 
 const animation = quantum.animate(({ delta }) => {

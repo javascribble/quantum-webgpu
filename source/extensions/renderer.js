@@ -5,5 +5,5 @@ const { WebGPU } = Quantum;
 
 WebGPU.prototype.render = function (state) {
     const commands = generateCommands(state, this.device, this.context);
-    this.device.queue.submit(encodeCommands(commands, this.device, this.context));
+    this.device.queue.submit(encodeCommands(commands, this.device));
 };

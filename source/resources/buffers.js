@@ -6,7 +6,7 @@ export const defaultBufferOptions = {
 export const loadBuffers = async (device, options) => {
     const buffers = [];
     for (const option of options) {
-        const vertices = await load(option.source);
+        const vertices = new Float32Array(await load(option.source));
 
         const buffer = {
             ...defaultBufferOptions,
