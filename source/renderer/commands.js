@@ -1,5 +1,6 @@
 import { createView } from '../context/texture.js';
 import { createRenderPipeline } from '../device/pipeline.js';
+import { createUniformBuffer } from '../device/buffer.js';
 import { createVertexBuffer } from '../device/buffer.js';
 
 export const generateCommands = (state, device, context) => {
@@ -10,13 +11,12 @@ export const generateCommands = (state, device, context) => {
             fragment: drawable.fragment
         });
 
-        // const uniformBuffer = device.createBuffer({
-        //     size: matrix4.byteLength,
-        //     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
-        // });
+        // const matrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+        // const uniformBuffer = createUniformBuffer(device, { size: matrix.byteLength });
+        // device.queue.writeBuffer(uniformBuffer, 0, matrix, 0, matrix.byteLength);
 
-        // const uniformBindGroup = device.createBindGroup({
-        //     layout:  .getBindGroupLayout(0),
+        // const uniformBindGroup = createBindGroup(device, {
+        //     layout: state.pipeline.getBindGroupLayout(0),
         //     entries: [
         //         {
         //             binding: 0,
@@ -27,14 +27,6 @@ export const generateCommands = (state, device, context) => {
         //     ]
         // });
     }
-
-    // device.queue.writeBuffer(
-    //     uniformBuffer,
-    //     0,
-    //     transformationMatrix.buffer,
-    //     transformationMatrix.byteOffset,
-    //     transformationMatrix.byteLength
-    // );
 
     const commands = [
         {
@@ -64,7 +56,7 @@ export const generateCommands = (state, device, context) => {
                     },
                     options: {
                         bindGroups: [],
-                        //vertexBuffers: [],
+                        vertexBuffers: [],
                         pipeline: state.pipeline,
                         draws: [
                             {

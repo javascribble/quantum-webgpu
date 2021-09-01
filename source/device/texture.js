@@ -11,6 +11,6 @@ export const defaultTextureDescriptor = {
     dimension: '2d'
 };
 
-export const createDepthTexture = (device, descriptor) => createTexture(device, { size: device.size, ...defaultDepthTextureDescriptor, ...descriptor });
+export const createDepthTexture = (device, descriptor) => createTexture(device, { ...defaultDepthTextureDescriptor, ...descriptor });
 
 export const createTexture = (device, descriptor) => device.createTexture({ ...defaultTextureDescriptor, ...descriptor });
