@@ -2,31 +2,34 @@ import { createView } from '../context/texture.js';
 import { createRenderPipeline } from '../device/pipeline.js';
 import { createUniformBuffer } from '../device/buffer.js';
 import { createVertexBuffer } from '../device/buffer.js';
+import { createBindGroup } from '../device/group.js';
 
 export const generateCommands = (state, device, context) => {
+    // const uniformBuffer = createUniformBuffer(device, { size: 64 });
+    // new Float32Array(uniformBuffer.getMappedRange()).set([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+    // uniformBuffer.unmap();
+
+    const vertexBuffer = createVertexBuffer(device, { size: 32 });
+    new Float32Array(vertexBuffer.getMappedRange()).set([-0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5]);
+    vertexBuffer.unmap();
+
     const drawable = state.children[0];
-    if (!state.pipeline) {
-        state.pipeline = createRenderPipeline(device, {
-            vertex: drawable.vertex,
-            fragment: drawable.fragment
-        });
+    const pipeline = createRenderPipeline(device, {
+        vertex: drawable.vertex,
+        fragment: drawable.fragment
+    });
 
-        // const matrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-        // const uniformBuffer = createUniformBuffer(device, { size: matrix.byteLength });
-        // device.queue.writeBuffer(uniformBuffer, 0, matrix, 0, matrix.byteLength);
-
-        // const uniformBindGroup = createBindGroup(device, {
-        //     layout: state.pipeline.getBindGroupLayout(0),
-        //     entries: [
-        //         {
-        //             binding: 0,
-        //             resource: {
-        //                 buffer: uniformBuffer
-        //             }
-        //         }
-        //     ]
-        // });
-    }
+    // const bindGroup = createBindGroup(device, {
+    //     layout: pipeline.getBindGroupLayout(0),
+    //     entries: [
+    //         {
+    //             binding: 0,
+    //             resource: {
+    //                 buffer: uniformBuffer
+    //             }
+    //         }
+    //     ]
+    // });
 
     const commands = [
         {
@@ -56,11 +59,11 @@ export const generateCommands = (state, device, context) => {
                     },
                     options: {
                         bindGroups: [],
-                        vertexBuffers: [],
-                        pipeline: state.pipeline,
+                        vertexBuffers: [vertexBuffer],
+                        pipeline,
                         draws: [
                             {
-                                count: 4, //cubeVertexCount
+                                count: 4,
                                 instances: 1,
                                 firstElement: 0,
                                 firstInstance: 0

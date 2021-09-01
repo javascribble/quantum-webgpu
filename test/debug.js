@@ -14,23 +14,23 @@ const { load } = quantum;
 const data = await load('debug.json');
 const resources = await webgpu.load(data);
 
-const object = { vertex: resources.shaders[0], fragment: resources.shaders[1] };
-//const object = { vertex: resources.shaders[2], fragment: resources.shaders[3], buffer: resources.buffers[0] };
+const object = { vertex: resources.shaders[0], fragment: resources.shaders[1], buffer: resources.buffers[0] };
 const state = { children: [object] };
 
-const animation = quantum.animate(({ delta }) => {
-    const fps = Math.trunc(1000 / delta);
+webgpu.render(state);
+// const animation = quantum.animate(({ delta }) => {
+//     const fps = Math.trunc(1000 / delta);
 
-    display.innerHTML = `FPS: ${fps} Count: ${1}`;
+//     display.innerHTML = `FPS: ${fps} Count: ${1}`;
 
-    webgpu.render(state);
+//     webgpu.render(state);
 
-    if (fps > 0 && fps < 30) {
-        animation.stop();
-        webgpu.unload(resources);
-    }
-});
+//     if (fps > 0 && fps < 30) {
+//         animation.stop();
+//         webgpu.unload(resources);
+//     }
+// });
 
-animation.start();
+// animation.start();
 
 document.body.style.visibility = 'visible';
