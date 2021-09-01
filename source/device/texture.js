@@ -1,16 +1,19 @@
-import { renderAttachmentTextureUsage } from '../constants/gpu.js';
+import { renderAttachmentTextureUsage, textureBindingTextureUsage } from '../constants/gpu.js';
 
 export const defaultDepthTextureDescriptor = {
     usage: renderAttachmentTextureUsage,
     format: 'depth24plus'
 };
 
+export const defaultImageTextureDescriptor = {
+    usage: textureBindingTextureUsage
+};
+
 export const defaultTextureDescriptor = {
-    //sampleCount: 1,
-    format: 'rgba8unorm',
-    dimension: '2d'
 };
 
 export const createDepthTexture = (device, descriptor) => createTexture(device, { ...defaultDepthTextureDescriptor, ...descriptor });
+
+export const createImageTexture = (device, descriptor) => createTexture(device, { ...defaultImageTextureDescriptor, ...descriptor });
 
 export const createTexture = (device, descriptor) => device.createTexture({ ...defaultTextureDescriptor, ...descriptor });

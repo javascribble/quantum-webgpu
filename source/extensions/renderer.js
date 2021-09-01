@@ -5,6 +5,6 @@ import { encodeCommand } from '../encoder/command.js';
 const { WebGPU } = Quantum;
 
 WebGPU.prototype.render = function (state) {
-    const commands = generateCommands(state, this.device, this.context);
+    const commands = generateCommands(state, this);
     this.device.queue.submit(commands.map(command => encodeCommand(command, createCommandEncoder(this.device, command))));
 };

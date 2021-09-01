@@ -7,11 +7,11 @@ export const defaultRenderPipelineDescriptor = {
         stripIndexFormat: 'uint32',
         cullMode: 'back'
     },
-    // depthStencil: {
-    //     depthWriteEnabled: true,
-    //     depthCompare: 'less',
-    //     format: 'depth24plus'
-    // }
+    depthStencil: {
+        depthWriteEnabled: true,
+        depthCompare: 'less',
+        format: 'depth24plus'
+    }
     // multisample: {
     //     count: 1,
     // }

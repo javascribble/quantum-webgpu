@@ -3,12 +3,11 @@ import { createRenderPipeline } from '../device/pipeline.js';
 import { createUniformBuffer } from '../device/buffer.js';
 import { createVertexBuffer } from '../device/buffer.js';
 import { createBindGroup } from '../device/group.js';
+import { createDepthTexture } from '../device/texture.js';
 
-export const generateCommands = (state, device, context) => {
-    // const uniformBuffer = createUniformBuffer(device, { size: 64 });
-    // new Float32Array(uniformBuffer.getMappedRange()).set([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
-    // uniformBuffer.unmap();
-
+export const generateCommands = (state, { device, context, size }) => {
+    const uniformBuffer = createUniformBuffer(device, { size: 64 });
+    const uniforms = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
     const vertexBuffer = createVertexBuffer(device, { size: 32 });
     new Float32Array(vertexBuffer.getMappedRange()).set([-0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5]);
     vertexBuffer.unmap();
@@ -19,17 +18,21 @@ export const generateCommands = (state, device, context) => {
         fragment: drawable.fragment
     });
 
-    // const bindGroup = createBindGroup(device, {
-    //     layout: pipeline.getBindGroupLayout(0),
-    //     entries: [
-    //         {
-    //             binding: 0,
-    //             resource: {
-    //                 buffer: uniformBuffer
-    //             }
-    //         }
-    //     ]
-    // });
+    const depthTexture = createDepthTexture(device, { size });
+
+    const bindGroup = createBindGroup(device, {
+        layout: pipeline.getBindGroupLayout(0),
+        entries: [
+            {
+                binding: 0,
+                resource: {
+                    buffer: uniformBuffer
+                }
+            }
+        ]
+    });
+
+    device.queue.writeBuffer(uniformBuffer, 0, uniforms);
 
     const commands = [
         {
@@ -49,16 +52,16 @@ export const generateCommands = (state, device, context) => {
                                 }
                             }
                         ],
-                        // depthStencilAttachment: {
-                        //     view: depthTexture.createView(),
-                        //     depthLoadValue: 1.0,
-                        //     depthStoreOp: 'store',
-                        //     stencilLoadValue: 0,
-                        //     stencilStoreOp: 'store',
-                        // }
+                        depthStencilAttachment: {
+                            view: depthTexture.createView(),
+                            depthLoadValue: 1.0,
+                            depthStoreOp: 'store',
+                            stencilLoadValue: 0,
+                            stencilStoreOp: 'store',
+                        }
                     },
                     options: {
-                        bindGroups: [],
+                        bindGroups: [bindGroup],
                         vertexBuffers: [vertexBuffer],
                         pipeline,
                         draws: [
