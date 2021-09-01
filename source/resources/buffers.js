@@ -1,4 +1,4 @@
-import { createBuffer } from '../device/buffer.js';
+import { createVertexBuffer } from '../device/buffer.js';
 
 const { load } = quantum;
 
@@ -8,12 +8,11 @@ export const defaultBufferOptions = {
 export const loadBuffers = async (device, options) => {
     const buffers = [];
     for (const option of options) {
-        // const buffer = createBuffer(device, option.descriptor);
-        // const vertices = new Float32Array(await load(option.source));
-        // const vertexBuffer = createVertexBuffer(vertices.length);
-        // new Float32Array(vertexBuffer.getMappedRange()).set(vertices);
-        // vertexBuffer.unmap();
-        // buffers.push(buffer);
+        const vertices = await load(option.source);
+        const vertexBuffer = createVertexBuffer(device, option.descriptor);
+        new Float32Array(vertexBuffer.getMappedRange()).set(vertices);
+        vertexBuffer.unmap();
+        buffers.push(vertexBuffer);
     }
 
     return buffers;

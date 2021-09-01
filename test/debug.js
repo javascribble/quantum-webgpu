@@ -9,28 +9,32 @@ const display = document.querySelector('#display');
 const webgpu = document.querySelector('quantum-webgpu');
 await webgpu.initialize();
 
-const { load } = quantum;
+const { load, Transform } = quantum;
 
 const data = await load('debug.json');
 const resources = await webgpu.load(data);
 
-const object = { vertex: resources.shaders[0], fragment: resources.shaders[1], buffer: resources.buffers[0] };
+const object = { transform: new Transform(), vertex: resources.shaders[0], fragment: resources.shaders[1], buffer: resources.buffers[0] };
 const state = { children: [object] };
 
-webgpu.render(state);
-// const animation = quantum.animate(({ delta }) => {
-//     const fps = Math.trunc(1000 / delta);
+const animation = quantum.animate(({ delta }) => {
+    const fps = Math.trunc(1000 / delta);
 
-//     display.innerHTML = `FPS: ${fps} Count: ${1}`;
+    display.innerHTML = `FPS: ${fps} Count: ${1}`;
 
-//     webgpu.render(state);
+    const rotation = object.transform.rotation;
+    rotation.x += delta;
+    rotation.y += delta;
+    rotation.z += delta;
 
-//     if (fps > 0 && fps < 30) {
-//         animation.stop();
-//         webgpu.unload(resources);
-//     }
-// });
+    webgpu.render(state);
 
-// animation.start();
+    if (fps > 0 && fps < 30) {
+        animation.stop();
+        webgpu.unload(resources);
+    }
+});
+
+animation.start();
 
 document.body.style.visibility = 'visible';
