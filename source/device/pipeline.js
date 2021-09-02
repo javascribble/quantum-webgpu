@@ -11,9 +11,6 @@ export const defaultRenderPipelineDescriptor = {
         depthCompare: 'less',
         format: 'depth24plus'
     }
-    // multisample: {
-    //     count: 1,
-    // }
 };
 
 export const createComputePipeline = (device, descriptor) => device.createComputePipeline({ ...defaultComputePipelineDescriptor, ...descriptor });

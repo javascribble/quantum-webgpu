@@ -9,7 +9,8 @@ export const defaultShaderOptions = {
 export const loadShaders = async (device, options) => {
     const shaders = [];
     for (const option of options) {
-        const module = createShaderModule(device, { code: await load(option.source) });
+        const code = await load(option.source);
+        const module = createShaderModule(device, { code });
         const shader = {
             ...defaultShaderOptions,
             ...option.descriptor,

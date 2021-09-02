@@ -23,17 +23,14 @@ export const generateCommands = (state, { device, context, size }) => {
             layout: pipeline.getBindGroupLayout(0),
             entries: [
                 {
-                    binding: 0,
                     resource: {
                         buffer: uniformBuffer
                     }
                 },
                 {
-                    binding: 1,
                     resource: createSampler(device),
                 },
                 {
-                    binding: 2,
                     resource: drawable.texture.createView(),
                 }
             ]
@@ -46,31 +43,13 @@ export const generateCommands = (state, { device, context, size }) => {
         state.initialized = true;
     }
 
-    const commands = [
+    return [
         {
             passes: [
                 {
                     descriptor: {
-                        colorAttachments: [
-                            {
-                                view: createView(context),
-                                //resolveTarget
-                                storeOp: 'store',
-                                loadValue: {
-                                    r: 0,
-                                    g: 0,
-                                    b: 0,
-                                    a: 1
-                                }
-                            }
-                        ],
-                        depthStencilAttachment: {
-                            view: state.depthTexture.createView(),
-                            depthLoadValue: 1.0,
-                            depthStoreOp: 'store',
-                            stencilLoadValue: 0,
-                            stencilStoreOp: 'store',
-                        }
+                        colorAttachments: [{ view: createView(context) }],
+                        depthStencilAttachment: { view: state.depthTexture.createView() }
                     },
                     options: {
                         bindGroups: state.bindGroups,
@@ -89,6 +68,4 @@ export const generateCommands = (state, { device, context, size }) => {
             ]
         }
     ];
-
-    return commands;
 };
