@@ -3,8 +3,7 @@ export const defaultComputePipelineDescriptor = {
 
 export const defaultRenderPipelineDescriptor = {
     primitive: {
-        topology: 'triangle-strip',
-        stripIndexFormat: 'uint32',
+        topology: 'triangle-list',
         cullMode: 'back'
     },
     depthStencil: {

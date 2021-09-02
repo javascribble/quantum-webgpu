@@ -69,7 +69,7 @@ export const generateCommands = (state, { device, context, size }) => {
                         pipeline: state.pipeline,
                         draws: [
                             {
-                                count: 4,
+                                count: 36,
                                 instances: 1,
                                 firstElement: 0,
                                 firstInstance: 0
