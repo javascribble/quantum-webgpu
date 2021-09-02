@@ -9,7 +9,7 @@ export const loadBuffers = async (device, options) => {
     const buffers = [];
     for (const option of options) {
         const vertices = await load(option.source);
-        const vertexBuffer = createVertexBuffer(device, option.descriptor);
+        const vertexBuffer = createVertexBuffer(device, { size: 4 * vertices.length });
         new Float32Array(vertexBuffer.getMappedRange()).set(vertices);
         vertexBuffer.unmap();
         buffers.push(vertexBuffer);

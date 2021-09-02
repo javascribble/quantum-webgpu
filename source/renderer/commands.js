@@ -7,7 +7,7 @@ import { createDepthTexture } from '../device/texture.js';
 export const generateCommands = (state, { device, context, size }) => {
     const drawable = state.children[0];
     if (!state.initialized) {
-        const uniforms = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]);
+        const uniforms = new Float32Array([0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1]);
         const uniformBuffer = createUniformBuffer(device, { size: uniforms.byteLength });
         device.queue.writeBuffer(uniformBuffer, 0, uniforms);
 

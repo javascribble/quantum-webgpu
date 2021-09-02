@@ -1,4 +1,5 @@
 import { canvasOptions } from '../constants/canvas.js';
+import { requestAdapter } from '../utilities/navigator.js';
 
 export class WebGPU extends Quantum.Canvas {
     getContext() {
@@ -6,23 +7,17 @@ export class WebGPU extends Quantum.Canvas {
     }
 
     async initialize() {
-        if (this.device) {
-            this.context.unconfigure();
-            this.device.destroy();
-        }
-
-        this.adapter = await navigator.gpu.requestAdapter();
-        this.device = await this.adapter.requestDevice();
-
-        this.format = this.context.getPreferredFormat(this.adapter);
+        const adapter = await requestAdapter();
+        this.device = await adapter.requestDevice();
+        this.format = this.context.getPreferredFormat(adapter);
         this.context.configure(this);
     }
 
     resize(size, event) {
         super.resize(size, event);
 
-        // TODO: Reinitialize destroyed textures.
-        //this.context.configure(this);
+        // this.context.unconfigure();
+        // this.context.configure(this);
     }
 }
 

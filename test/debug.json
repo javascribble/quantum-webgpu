@@ -1,10 +1,7 @@
 {
     "buffers": [
         {
-            "source": "./resources/cube.json",
-            "descriptor": {
-                "size": 48
-            }
+            "source": "./resources/cube.json"
         }
     ],
     "shaders": [
@@ -13,7 +10,7 @@
             "descriptor": {
                 "buffers": [
                     {
-                        "arrayStride": 12,
+                        "arrayStride": 20,
                         "attributes": [
                             {
                                 "shaderLocation": 0,
