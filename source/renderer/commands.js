@@ -6,7 +6,7 @@ import { createDepthTexture } from '../device/texture.js';
 import { createSampler } from '../device/sampler.js';
 
 export const generateCommands = (state, { device, context, size }) => {
-    const drawable = state.children[0];
+    const drawable = state.root;
     if (!state.initialized) {
         const uniforms = new Float32Array([0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1]);
         const uniformBuffer = createUniformBuffer(device, { size: uniforms.byteLength });

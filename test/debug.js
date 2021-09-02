@@ -14,7 +14,7 @@ const { load, Transform } = quantum;
 const data = await load('debug.json');
 const resources = await webgpu.load(data);
 
-const object = {
+const root = {
     transform: new Transform(),
     vertex: resources.shaders[0],
     fragment: resources.shaders[1],
@@ -22,14 +22,14 @@ const object = {
     texture: resources.textures[0]
 };
 
-const state = { children: [object] };
+const state = { root };
 
 const animation = quantum.animate(({ delta }) => {
     const fps = Math.trunc(1000 / delta);
 
     display.innerHTML = `FPS: ${fps} Count: ${1}`;
 
-    const rotation = object.transform.rotation;
+    const rotation = root.transform.rotation;
     rotation.x += delta;
     rotation.y += delta;
     rotation.z += delta;
