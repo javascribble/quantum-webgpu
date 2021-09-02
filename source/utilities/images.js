@@ -1,1 +1,0 @@
-export const createImageBitmap = sprite => await createImageBitmap(image, sprite.x, sprite.y, sprite.w, sprite.h);

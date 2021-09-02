@@ -16,6 +16,11 @@
                                 "shaderLocation": 0,
                                 "format": "float32x3",
                                 "offset": 0
+                            },
+                            {
+                                "shaderLocation": 1,
+                                "format": "float32x2",
+                                "offset": 12
                             }
                         ]
                     }
@@ -27,7 +32,13 @@
             "descriptor": {
                 "targets": [
                     {
-                        "format": "bgra8unorm"
+                        "format": "bgra8unorm",
+                        "blend": {
+                            "color": {},
+                            "alpha": {
+                                "dstFactor": "one-minus-src-alpha"
+                            }
+                        }
                     }
                 ]
             }

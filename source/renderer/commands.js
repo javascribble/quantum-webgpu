@@ -1,8 +1,9 @@
 import { createView } from '../context/texture.js';
-import { createRenderPipeline } from '../device/pipeline.js';
 import { createUniformBuffer } from '../device/buffer.js';
 import { createBindGroup } from '../device/group.js';
+import { createRenderPipeline } from '../device/pipeline.js';
 import { createDepthTexture } from '../device/texture.js';
+import { createSampler } from '../device/sampler.js';
 
 export const generateCommands = (state, { device, context, size }) => {
     const drawable = state.children[0];
@@ -26,6 +27,14 @@ export const generateCommands = (state, { device, context, size }) => {
                     resource: {
                         buffer: uniformBuffer
                     }
+                },
+                {
+                    binding: 1,
+                    resource: createSampler(device),
+                },
+                {
+                    binding: 2,
+                    resource: drawable.texture.createView(),
                 }
             ]
         });

@@ -1,4 +1,4 @@
-import { createTexture } from '../device/texture.js';
+import { createImageTexture } from '../device/texture.js';
 
 const { load } = quantum;
 
@@ -8,9 +8,11 @@ export const defaultTextureOptions = {
 export const loadTextures = async (device, options) => {
     const textures = [];
     for (const option of options) {
-        // const texture = createTexture(device, option.descriptor);
-        // const image = await load(option.source);
-        // textures.push(texture);
+        const image = await load(option.source);
+        const imageBitmap = await createImageBitmap(image);
+        const texture = createImageTexture(device, { size: [imageBitmap.width, imageBitmap.height, 1] });
+        device.queue.copyExternalImageToTexture({ source: imageBitmap }, { texture }, [imageBitmap.width, imageBitmap.height]);
+        textures.push(texture);
     }
 
     return textures;

@@ -1,6 +1,6 @@
 export const defaultSamplerDescriptor = {
-    minFilter: 'linear',
-    magFilter: 'linear'
+    minFilter: 'nearest',
+    magFilter: 'nearest'
 };
 
 export const createSampler = (device, descriptor) => device.createSampler({ ...defaultSamplerDescriptor, ...descriptor });

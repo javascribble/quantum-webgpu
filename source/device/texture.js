@@ -1,4 +1,4 @@
-import { renderAttachmentTextureUsage, textureBindingTextureUsage } from '../constants/gpu.js';
+import { copyDestinationTextureUsage, renderAttachmentTextureUsage, textureBindingTextureUsage } from '../constants/gpu.js';
 
 export const defaultDepthTextureDescriptor = {
     usage: renderAttachmentTextureUsage,
@@ -6,7 +6,8 @@ export const defaultDepthTextureDescriptor = {
 };
 
 export const defaultImageTextureDescriptor = {
-    usage: textureBindingTextureUsage
+    usage: copyDestinationTextureUsage | textureBindingTextureUsage | renderAttachmentTextureUsage,
+    format: 'rgba8unorm'
 };
 
 export const defaultTextureDescriptor = {
