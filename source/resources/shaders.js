@@ -6,7 +6,7 @@ export const defaultShaderOptions = {
     entryPoint: 'main'
 };
 
-export const loadShaders = async (device, options) => {
+export const loadShaders = async ({ device }, options) => {
     const shaders = [];
     for (const option of options) {
         const code = await load(option.source);

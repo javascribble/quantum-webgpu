@@ -6,9 +6,9 @@ const { WebGPU } = Quantum;
 
 WebGPU.prototype.load = async function (options) {
     return {
-        buffers: await loadBuffers(this.device, options.buffers),
-        shaders: await loadShaders(this.device, options.shaders),
-        textures: await loadTextures(this.device, options.textures)
+        buffers: await loadBuffers(this, options.buffers),
+        shaders: await loadShaders(this, options.shaders),
+        textures: await loadTextures(this, options.textures)
     };
 };
 

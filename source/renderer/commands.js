@@ -28,10 +28,10 @@ export const generateCommands = (state, { device, context, size }) => {
                     }
                 },
                 {
-                    resource: createSampler(device),
+                    resource: createSampler(device)
                 },
                 {
-                    resource: drawable.texture.createView(),
+                    resource: drawable.texture.createView()
                 }
             ]
         });
