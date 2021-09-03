@@ -1,4 +1,4 @@
-import { vertexBufferUsage, uniformBufferUsage, copyDestinationBufferUsage } from '../constants/gpu.js';
+import { vertexBufferUsage, uniformBufferUsage, copyDestinationBufferUsage } from '../constants/flags.js';
 
 export const defaultUniformBufferDescriptor = {
     usage: uniformBufferUsage | copyDestinationBufferUsage

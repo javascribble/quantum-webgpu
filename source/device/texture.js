@@ -1,4 +1,4 @@
-import { copyDestinationTextureUsage, renderAttachmentTextureUsage, textureBindingTextureUsage } from '../constants/gpu.js';
+import { copyDestinationTextureUsage, renderAttachmentTextureUsage, textureBindingTextureUsage } from '../constants/flags.js';
 
 export const defaultDepthTextureDescriptor = {
     usage: renderAttachmentTextureUsage,
