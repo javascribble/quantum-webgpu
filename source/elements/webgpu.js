@@ -1,5 +1,6 @@
 import { canvasOptions } from '../constants/canvas.js';
 import { requestAdapter } from '../utilities/navigator.js';
+import '../plugins/loaders.js';
 
 export class WebGPU extends Quantum.Canvas {
     getContext() {

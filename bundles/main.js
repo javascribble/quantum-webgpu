@@ -1,3 +1,1 @@
-import './main-base.js';
-import './main-extensions.js';
-import './main-plugins.js';
+export * from '../source/elements/webgpu.js';
