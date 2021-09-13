@@ -4,6 +4,8 @@ import { createBindGroup } from '../device/group.js';
 import { createRenderPipeline } from '../device/pipeline.js';
 import { createDepthTexture } from '../device/texture.js';
 import { createSampler } from '../device/sampler.js';
+import { createCommandEncoder } from '../device/encoder.js';
+import { encodeCommand } from '../encoder/command.js';
 
 export const generateCommands = (state, { device, context, size }) => {
     const drawable = state.root;
@@ -43,7 +45,7 @@ export const generateCommands = (state, { device, context, size }) => {
         state.initialized = true;
     }
 
-    return [
+    const commands = [
         {
             passes: [
                 {
@@ -68,4 +70,6 @@ export const generateCommands = (state, { device, context, size }) => {
             ]
         }
     ];
+
+    device.queue.submit(commands.map(command => encodeCommand(command, createCommandEncoder(device, command))));
 };
