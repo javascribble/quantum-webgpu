@@ -3,7 +3,6 @@ import '/bundles/main.js';
 
 const display = document.querySelector('#display');
 const webgpu = document.querySelector('quantum-webgpu');
-await webgpu.initialize();
 
 const { load } = quantum;
 

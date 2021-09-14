@@ -1,4 +1,3 @@
-import { createView } from '../context/texture.js';
 import { createUniformBuffer } from '../device/buffer.js';
 import { createBindGroup } from '../device/group.js';
 import { createRenderPipeline } from '../device/pipeline.js';
@@ -7,7 +6,8 @@ import { createSampler } from '../device/sampler.js';
 import { createCommandEncoder } from '../device/encoder.js';
 import { encodeCommand } from '../encoder/command.js';
 
-export const generateCommands = (state, { device, context, size }) => {
+export function render(state) {
+    const { device, context, size } = this;
     const drawable = state.root;
     if (!state.initialized) {
         const uniforms = new Float32Array([0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 1]);
@@ -50,7 +50,7 @@ export const generateCommands = (state, { device, context, size }) => {
             passes: [
                 {
                     descriptor: {
-                        colorAttachments: [{ view: createView(context) }],
+                        colorAttachments: [{ view: context.getCurrentTexture().createView() }],
                         depthStencilAttachment: { view: state.depthTexture.createView() }
                     },
                     options: {
@@ -72,4 +72,4 @@ export const generateCommands = (state, { device, context, size }) => {
     ];
 
     device.queue.submit(commands.map(command => encodeCommand(command, createCommandEncoder(device, command))));
-};
+}
