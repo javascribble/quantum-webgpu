@@ -14,10 +14,7 @@ export function render(state) {
         const uniformBuffer = createUniformBuffer(device, { size: uniforms.byteLength });
         device.queue.writeBuffer(uniformBuffer, 0, uniforms);
 
-        const pipeline = createRenderPipeline(device, {
-            vertex: drawable.vertex,
-            fragment: drawable.fragment
-        });
+        const pipeline = createRenderPipeline(device, drawable);
 
         const depthTexture = createDepthTexture(device, { size });
 

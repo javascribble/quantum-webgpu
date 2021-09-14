@@ -3,11 +3,21 @@ import { loadTextures } from '../resources/textures.js';
 import { loadShaders } from '../resources/shaders.js';
 
 export async function load(options) {
-    return {
-        buffers: await loadBuffers(this, options.buffers),
-        shaders: await loadShaders(this, options.shaders),
-        textures: await loadTextures(this, options.textures)
-    };
+    const resources = {};
+
+    if (options.buffers) {
+        resources.buffers = await loadBuffers(this, options.buffers);
+    }
+
+    if (options.shaders) {
+        resources.shaders = await loadShaders(this, options.shaders);
+    }
+
+    if (options.textures) {
+        resources.textures = await loadTextures(this, options.textures);
+    }
+
+    return resources;
 }
 
 export function unload(resources) {
