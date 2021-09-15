@@ -2,7 +2,6 @@ import { resize } from '../context/resize.js';
 import { load, unload } from '../context/resources.js';
 import { render } from '../renderer/render.js';
 import webgpu from '../templates/webgpu.js';
-import '../plugins/loaders.js';
 
 const { resizeObserver } = quantum;
 
