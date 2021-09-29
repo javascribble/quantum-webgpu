@@ -1,10 +1,7 @@
 import { loadBuffers } from '../resources/buffers.js';
 import { loadTextures } from '../resources/textures.js';
 import { loadShaders } from '../resources/shaders.js';
-
-const { loaders, loadText } = quantum;
-
-loaders.wgsl = loadText;
+import '../decorators/loaders.js';
 
 export async function load(options) {
     const resources = {};
